@@ -22,7 +22,7 @@ This ROS 2 package is designed for recording and storing robot movements and imp
 1. Clone this repository into your ROS 2 workspace:
 ```bash
 cd ~/ros2_ws/src
-git clone <repository-url>
+git clone https://github.com/dongmin0204/SLAM_ROS.git
 ```
 
 2. Build the package:
