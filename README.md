@@ -36,7 +36,7 @@ source /opt/homebrew/opt/ros/galactic/setup.bash
 ### 2. 프로젝트 설정
 ```bash
 # 저장소 클론
-git clone [repository-url]
+git clone https://github.com/dongmin0204/SLAM_ROS.git
 cd SLAM_ROS
 
 # 워크스페이스 빌드
