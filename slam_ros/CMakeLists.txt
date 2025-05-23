@@ -15,10 +15,18 @@ find_package(tf2 REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 find_package(rclcpp_action REQUIRED)
+find_package(Eigen3 REQUIRED)
+find_package(osqp_eigen REQUIRED)
 
 # Generate action messages
 rosidl_generate_interfaces(${PROJECT_NAME}
   "action/MoveXY.action"
+)
+
+# Include directories
+include_directories(
+  include
+  ${EIGEN3_INCLUDE_DIR}
 )
 
 # Add the movement recorder executable
@@ -33,7 +41,13 @@ ament_target_dependencies(movement_recorder
 )
 
 # Add the movement controller executable
-add_executable(movement_controller src/movement_controller.cpp)
+add_executable(movement_controller 
+  src/movement_controller.cpp
+  src/quintic_trajectory.cpp
+  src/kinematic_model.cpp
+  src/mpc_solver.cpp
+)
+
 ament_target_dependencies(movement_controller
   rclcpp
   rclcpp_action
@@ -43,6 +57,12 @@ ament_target_dependencies(movement_controller
   tf2
   tf2_ros
 )
+
+target_link_libraries(movement_controller
+  Eigen3::Eigen
+  osqp_eigen
+)
+
 rosidl_target_interfaces(movement_controller
   ${PROJECT_NAME} "rosidl_typesupport_cpp")
 
@@ -57,6 +77,12 @@ install(TARGETS
 install(DIRECTORY
   launch
   DESTINATION share/${PROJECT_NAME}
+)
+
+# Install headers
+install(DIRECTORY
+  include/
+  DESTINATION include
 )
 
 ament_package() 

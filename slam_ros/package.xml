@@ -3,19 +3,22 @@
 <package format="3">
   <name>slam_ros</name>
   <version>0.0.0</version>
-  <description>SLAM ROS package with movement recording and control</description>
+  <description>SLAM ROS package with MPC-based movement control</description>
   <maintainer email="your.email@example.com">Your Name</maintainer>
-  <license>Apache License 2.0</license>
+  <license>MIT</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
   <depend>rclcpp</depend>
+  <depend>rclcpp_action</depend>
   <depend>geometry_msgs</depend>
   <depend>nav_msgs</depend>
   <depend>sensor_msgs</depend>
   <depend>tf2</depend>
   <depend>tf2_ros</depend>
   <depend>rosidl_default_generators</depend>
+  <depend>eigen</depend>
+  <depend>osqp_eigen</depend>
 
   <exec_depend>rosidl_default_runtime</exec_depend>
 
